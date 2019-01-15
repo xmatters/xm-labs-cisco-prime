@@ -13,10 +13,12 @@
 
 
 # How it works
-Cisco Prime does not have a way to push Alarms out, so the xMatters Agent polls Prime very so often (defined in the cronjob or system scheduler) to poll for new Alarms with severity `CRITICAL` or `MAJOR` (for more information on filtering the Alarms, check [here](https://d1nmyq4gcgsfi5.cloudfront.net/media/pi_3_4_devnet/api/v4/index.html@id=filtering-doc.html)) in the last X minutes. `X` is defined in the `Poller Interval` constant and will need to match the cronjob set up below. For each Alarm found, a new event is generated and any subscribed recipients are notified. 
 
-The **Acknowledge** response will acknowledge the Alarm and any comments will be sent back to the Alarm as annotations. 
+Cisco Prime’s notification triggers (SMTP and SNMP) doesn’t provide the information to facilitate efficient two-way communications between Cisco Prime and xMatters, so the xMatters Agent polls Prime’s APIs at a scheduled interval (defined in the cronjob or system scheduler) for new Alarms with severity `CRITICAL` or `MAJOR`, Alarm acknowledged status is false  (for more information on filtering the Alarms, check [here](https://d1nmyq4gcgsfi5.cloudfront.net/media/pi_3_4_devnet/api/v4/index.html@id=filtering-doc.html)) in the last `X` minutes. X is defined in the `Poller Interval` constant and will need to match the cronjob set up below. For each Alarm found, a new event is generated and any subscribed recipients are notified.
 
+
+
+The **Acknowledge** and **Clear** responses will acknowledge/clear the Alarm and any comments will be sent back to the Alarm as annotations.
 # Installation
 
 
