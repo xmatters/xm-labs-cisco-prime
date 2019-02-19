@@ -40,15 +40,15 @@ Be sure to grant the `NBI Read` and `NBI Write` permissions to allow the agent t
 
 ## xMatters set up
 
-First, get the xAgent installed. Check out the help page [here](https://help.xmatters.com/ondemand/xmodwelcome/xmattersagent/xmatters-agent-topic.htm). 
+First, get the xAgent installed. Check out the help page [here](https://help.xmatters.com/ondemand/xmodwelcome/xmattersagent/xmatters-agent-topic.htm). It is recommended to change the name of this agent to something helpful like "CiscoPrime" by clicking in the agent name on the Agents > Installed page and changing the value. 
 
 Then:
 1. Upload the [CiscoPrimeCommPlan.zip](CiscoPrimeCommPlan.zip) comm plan to the Comm Plans section of the Developer tab. 
-2. Click Edit > **Integration Builder** and click **Endpoints**. In the **Cisco Prime** endpoint, enter the URL relative to the xAgent as well as the username and password for the xMatters user created in Prime. 
+2. Click Edit > **Integration Builder** and click **Endpoints**. In the **Cisco Prime** endpoint, enter the URL relative to the xAgent as well as the username and password for the xMatters user created in Prime and make sure to check the **Preemptive** checkbox. 
 3. On the Integration Builder tab, expand the Inbound Integrations and click the link for the **New Alarm** integration. Scroll to the bottom and select the appropriate user the agent should use to authenticate into xMatters with. For example, if you created a user called `Cisco Prime`, then select that user as the Authenticating user. When you change the Authenticating user, a new url is generated, so click Copy. 
 4. Click the **Edit Constants** button and click on the inbound **Inbound Alarm Endpoint**. Paste in the path portion, the part after the `.com` of the url for the **New Alarm** integration. Be sure to include the `apiKey`. Click Save Changes. 
 5. On the Integration Builder tab, expand the Inbound Integrations and click the link for the **Inbound Poller** integration. Scroll to the bottom and again, select the appropriate user, this user should match the user selected in the other integration. Click the **copy** link to copy the url. This url will be the IP address(es) of the agent and will be used to trigger the agent to poll Prime for updates. 
-
+6. Still on the Integration Builder tab, expand the Outbound Integrations and for each integration, click the link and select the appropriate xMatters Agent running on the Prime server. 
 
 **Poller**
 1. Edit the [triggerPoller.sh](triggerPoller.sh) file and update the `XAGENT_URL` value to the url we just copied. Save the file to the server the agent is running on. 
