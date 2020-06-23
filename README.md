@@ -2,7 +2,9 @@
 [Cisco Prime](https://www.cisco.com/c/en/us/products/cloud-systems-management/prime-infrastructure/index.html) is a leading network management tool to enable enterprise network management. This integration polls for new Alarms entries and will notify the appropriate group. The integration allows for responses to be carried back to Prime to update the Alarm with Acknowledgement and Annotations. 
 
 <kbd>
-  <img src="https://github.com/xmatters/xMatters-Labs/raw/master/media/disclaimer.png">
+<a href="https://support.xmatters.com/hc/en-us/community/topics">
+   <img src="https://github.com/xmatters/xMatters-Labs/raw/master/media/disclaimer.png">
+</a>
 </kbd>
 
 # Pre-Requisites
@@ -11,6 +13,8 @@
 
 # Files
 
+* [CiscoPrimeWorkflow.zip](CiscoPrimeWorkflow.zip) - The worfklow zip file to be imported
+* [triggerPoller.sh](triggerPoller.sh) - Bash script for triggering the poll. 
 
 # How it works
 
@@ -43,7 +47,7 @@ Be sure to grant the `NBI Read` and `NBI Write` permissions to allow the agent t
 First, get the xAgent installed. Check out the help page [here](https://help.xmatters.com/ondemand/xmodwelcome/xmattersagent/xmatters-agent-topic.htm). It is recommended to change the name of this agent to something helpful like "CiscoPrime" by clicking in the agent name on the Agents > Installed page and changing the value. 
 
 Then:
-1. Upload the [CiscoPrimeCommPlan.zip](CiscoPrimeCommPlan.zip) comm plan to the Comm Plans section of the Developer tab. 
+1. Upload the [CiscoPrimeWorkflow.zip](CiscoPrimeWorkflow.zip) workflow to the workflows page.
 2. Click Edit > **Integration Builder** and click **Endpoints**. In the **Cisco Prime** endpoint, enter the URL relative to the xAgent as well as the username and password for the xMatters user created in Prime and make sure to check the **Preemptive** checkbox. 
 3. On the Integration Builder tab, expand the Inbound Integrations and click the link for the **New Alarm** integration. Scroll to the bottom and select the appropriate user the agent should use to authenticate into xMatters with. For example, if you created a user called `Cisco Prime`, then select that user as the Authenticating user. When you change the Authenticating user, a new url is generated, so click Copy. 
 4. Click the **Edit Constants** button and click on the inbound **Inbound Alarm Endpoint**. Paste in the path portion, the part after the `.com` of the url for the **New Alarm** integration. Be sure to include the `apiKey`. Click Save Changes. 
